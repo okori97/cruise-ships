@@ -30,5 +30,20 @@ describe("Boarding the ship", () => {
         boat.boardPassengers(2);
         expect(boat.passengers).toEqual(2);
     })
-})
+});
+
+describe("Setting sail!", () => {
+    let boat;
+    beforeEach(() => {
+        boat = new Ship('Bristol');
+        });
+    it("should have a method called set sail", () => {
+        expect(boat.setSail).toBeInstanceOf(Function);
+    })
+
+    it("should change staring port to false", () => {
+        boat.setSail(); 
+        expect(boat.startingPort).toBeFalsy();
+    })
+});
 
