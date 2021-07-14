@@ -1,5 +1,6 @@
 const { TestWatcher } = require("jest");
-const Ship = require("../src/cruise");
+const { Ship, Port } = require("../src/cruise");
+
 
 
 describe("Building a ship", () => {
@@ -20,6 +21,22 @@ describe("Building a ship", () => {
     })
 });
 
+describe("Ports", () => {
+    let port;
+    beforeEach(() => {
+      port = new Port("Bristol");  
+    });
+
+    it("new Port() should return an object", () => {
+        expect(port).toBeInstanceOf(Object);
+    })
+    
+    it("port should have a name", () => {
+        
+        expect(port.name).toBe('Bristol');
+    })
+});
+
 describe("Boarding the ship", () => {
     let boat;
     beforeEach(() => {
@@ -33,17 +50,37 @@ describe("Boarding the ship", () => {
 });
 
 describe("Setting sail!", () => {
-    let boat;
+    let ship;
     beforeEach(() => {
-        boat = new Ship('Bristol');
+        ship = new Ship('Bristol');
         });
     it("should have a method called set sail", () => {
-        expect(boat.setSail).toBeInstanceOf(Function);
+        expect(ship.setSail).toBeInstanceOf(Function);
     })
 
     it("should change staring port to false", () => {
-        boat.setSail(); 
-        expect(boat.startingPort).toBeFalsy();
+        ship.setSail(); 
+        expect(ship.startingPort).toBeFalsy();
+    })
+});
+
+describe("Docking at a port", () => {
+    let port;
+    let port2;
+    let ship;
+    beforeEach(() => {
+      port = new Port("Bristol");  
+      port2 = new Port("Lindsfeild");  
+      ship = new Ship("London");
+    });
+
+    it("Should be able to docke at a new port", () => {
+        ship.dock(port);
+        expect(ship.startingPort).toBe("Bristol");
+        ship.setSail();
+        expect(ship.startingPort).toBeFalsy();
+        ship.dock(port2);
+        expect(ship.startingPort).toBe("Lindsfeild");
     })
 });
 
