@@ -1,5 +1,6 @@
 
-function Ship() {
+function Ship(name) {
+    this.startingPort = `${name}`;
     this.passengers = 0;
 };
 

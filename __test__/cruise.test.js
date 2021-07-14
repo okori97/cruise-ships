@@ -5,13 +5,16 @@ const Ship = require("../src/cruise");
 describe("Building a ship", () => {
     let boat;
     beforeEach(() => {
-        boat = new Ship();
+        boat = new Ship('Bristol');
         });
 
     it("should return a object", () => {
         expect(boat).toBeInstanceOf(Object);
     })
 
+    it("should have a starting port", () => {
+        expect(boat.startingPort).toBe('Bristol');
+    })
     it("should be able to carry passengers", () => {
         expect(boat.passengers).toEqual(0);
     })
