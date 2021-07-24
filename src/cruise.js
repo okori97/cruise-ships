@@ -1,10 +1,15 @@
 
-function Ship(port) {
-    this.startingPort = `${port}`;
-    this.passengers = 0;
-    this.isDocked = true;
-    this.destination = '';
+function Ship(itinerary) {
+    this.currentPort = itinerary.ports[0];
+    this.itinerary = itinerary;
+    this.previousPort = null;
     
+};
+
+
+
+function Itinerary(ports) {
+    this.ports = ports;
 };
 
 
@@ -13,16 +18,25 @@ return this.passengers += amount_Of_People;
 }
 
 Ship.prototype.setSail = function() {
-    return this.startingPort = false;
+    const itinerary = this.itinerary;
+    const currentPortIndex = itinerary.ports.indexOf(this.currentPort);
+
+    if(currentPortIndex === (this.itinerary.ports.length - 1)) {
+        throw new Error('End of itinerary reached');
+    }
+    this.previousPort = this.currentPort;
+    this.currentPort = null;
+    
 };
 
 Ship.prototype.dock = function(port) {
-    return this.startingPort = `${port.name}`;
+    const itinerary = this.itinerary;
+    const previousPortIndex = itinerary.ports.indexOf(this.previousPort);
+    this.currentPort = itinerary.ports[previousPortIndex +1];
+
+
 }
 
-function Port(name) {
-    this.name = `${name}`;
-};
 
 
-module.exports = {Ship, Port};
+module.exports = Ship;
