@@ -40,10 +40,12 @@ describe("Building a ship", () => {
 describe("Can set sail!", () => {
     let ship;
     let port;
+    let itinerary;
+    let London
     beforeEach(() => {
         port = new Port("Bristol");
-        const London = new Port("London");
-        const itinerary = new Itinerary([port, London]);
+        London = new Port("London");
+        itinerary = new Itinerary([port, London]);
         ship = new Ship(itinerary);
         });
 
@@ -55,14 +57,15 @@ describe("Can set sail!", () => {
         ship.setSail(); 
         expect(ship.currentPort).toBeFalsy();
         expect(port.ships).not.toContain(ship);
+        expect(ship.previousPort.ships).not.toContain(ship);
         expect(ship.previousPort).toBe(port);
 
     })
     it("setting sail should remove ship from previous port", () => {
-        ship.setSail(); 
-        expect(ship.previousPort.ships).toEqual([]);
-        ship.dock();
         expect(ship.currentPort.ships).toContain(ship);
+        ship.setSail(); 
+        expect(ship.previousPort.ships).not.toContain(ship);
+       
         
     })
 

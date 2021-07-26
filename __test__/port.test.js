@@ -4,36 +4,36 @@ const Itinerary = require("../src/itinerary");
 
 
 describe("Ports", () => {
-    let Bristol;
+    let port;
     let ship;
     let itinerary;
+    let Titanic;
     beforeEach(() => {
-      Bristol = new Port("Bristol"); 
-      itinerary = new Itinerary([Bristol]); 
-      ship = new Ship(itinerary);
+        port = new Port("Bristol"); 
+        itinerary = new Itinerary([port]); 
+        ship = new Ship(itinerary);
+        Titanic = new Ship(itinerary);
     });
 
     it("new Port() should return an object", () => {
-        expect(Bristol).toBeInstanceOf(Object);
+        expect(port).toBeInstanceOf(Object);
     });
-    
-    it("port should have a name", () => {
-        
-        expect(Bristol.name).toBe('Bristol');
-    });
-
-    it("should have a property called ships", () => {
-        expect(Bristol.ships).toContain(ship);
-    });
+   
     it("should be able to add ships", () => {
-        Bristol.removeShip()
-        Bristol.addShip(ship);
-        expect(Bristol.ships).toContain(ship);
+        port.removeShip()
+        port.addShip(ship);
+        expect(port.ships).toContain(ship);
     });
     it("should be able to remove ships", () => {
-        Bristol.addShip(ship);
-        Bristol.removeShip();
-        expect(Bristol.ships).toEqual([]);
+    const port = new Port('Dover');
+    const titanic = jest.fn();
+    const queenMary = jest.fn();
+
+    port.addShip(titanic);
+    port.addShip(queenMary);
+    port.removeShip(queenMary);
+
+    expect(port.ships).toEqual([titanic]);
     });
 
 
