@@ -21,12 +21,15 @@ describe("Building a ship", () => {
 
 
     it("should return a object", () => {
-       
+    
         expect(ship).toBeInstanceOf(Object);
     })
 
     it("should have a starting port", () => {
         expect(ship.currentPort).toBe(port);
+    })
+    it("should get added to starting port on instantiation", () => {
+        expect(ship.currentPort.ships).toContain(ship);
     })
    
 });
@@ -34,7 +37,7 @@ describe("Building a ship", () => {
 
 
 
-describe("Setting sail!", () => {
+describe("Can set sail!", () => {
     let ship;
     let port;
     beforeEach(() => {
@@ -48,11 +51,19 @@ describe("Setting sail!", () => {
         expect(ship.setSail).toBeInstanceOf(Function);
     })
 
-    it("should change staring port to false", () => {
+    it("setting sail should change starting port to false", () => {
         ship.setSail(); 
         expect(ship.currentPort).toBeFalsy();
+        expect(port.ships).not.toContain(ship);
         expect(ship.previousPort).toBe(port);
 
+    })
+    it("setting sail should remove ship from previous port", () => {
+        ship.setSail(); 
+        expect(ship.previousPort.ships).toEqual([]);
+        ship.dock();
+        expect(ship.currentPort.ships).toContain(ship);
+        
     })
 
     it("can\'t sail further than it\'s itinerary", () => {
@@ -83,6 +94,7 @@ describe("Docking at a port", () => {
         ship.setSail();
         ship.dock();
         expect(ship.currentPort).toBe(Lindsfeild);
+        expect(ship.currentPort.ships).toContain(ship);
 
     })
 
