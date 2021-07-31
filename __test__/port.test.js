@@ -1,6 +1,6 @@
 
 const Port = require("../src/port");
-const Itinerary = require("../src/itinerary");
+
 
 
 describe("Ports", () => {
@@ -12,8 +12,10 @@ describe("Ports", () => {
 
 
     beforeEach(() => {
-        port = new Port("Bristol"); 
-        itinerary = new Itinerary([port]); 
+        port =  new Port('Bristol');
+        itinerary = { 
+            ports : [port]
+        }
         ship = jest.fn();
         titanic = jest.fn();
         queenMary = jest.fn();
@@ -35,8 +37,9 @@ describe("Ports", () => {
     port.addShip(titanic);
     port.addShip(queenMary);
     port.removeShip(queenMary);
-
-    expect(port.ships).toEqual([titanic]);
+    
+    expect(port.removeShip).not.toContain(queenMary);
+    ;
     });
 
 

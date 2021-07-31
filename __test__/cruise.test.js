@@ -1,7 +1,5 @@
 const { TestWatcher } = require("jest");
 const Ship = require("../src/cruise");
-const Port = require("../src/port");
-const Itinerary = require("../src/itinerary");
 
 
 
@@ -15,8 +13,18 @@ describe("Building a ship", () => {
 
     beforeEach(() => {
 
-        port = new Port('Bristol');
-        itinerary = new Itinerary([port]);
+    
+        port =  {
+            addShip : jest.fn(),
+            removeShip : jest.fn(),
+            name : 'Bristol',
+            ships : [],
+        };
+
+        itinerary = { 
+            ports : [port]
+        };
+
         ship = new Ship(itinerary);
 
         });
@@ -24,14 +32,14 @@ describe("Building a ship", () => {
 
     it("should return a object", () => {
         expect(ship).toBeInstanceOf(Object);
+        
     })
 
     it("should have a starting port", () => {
         expect(ship.currentPort).toBe(port);
     })
     it("should get added to starting port on instantiation", () => {
-        expect(ship.currentPort.ships).toContain(ship);
-    })
+        expect(port.addShip).toHaveBeenCalledWith(ship);    })
    
 });
 
@@ -39,7 +47,7 @@ describe("Building a ship", () => {
 
 
 describe("Can set sail!", () => {
-    
+
     let ship;
     let Bristol;
     let itinerary;
@@ -48,9 +56,24 @@ describe("Can set sail!", () => {
 
     beforeEach(() => {
 
-        Bristol = new Port("Bristol");
-        London = new Port("London");
-        itinerary = new Itinerary([Bristol, London]);
+        Bristol =  {
+            addShip : jest.fn(),
+            removeShip : jest.fn(),
+            name : 'Bristol',
+            ships : [],
+        };
+
+        London =  {
+            addShip : jest.fn(),
+            removeShip : jest.fn(),
+            name : 'London',
+            ships : [],
+        };
+
+        itinerary = { 
+            ports : [Bristol, London]
+        };
+
         ship = new Ship(itinerary);
         otherShip = new Ship(itinerary);
 
@@ -65,16 +88,15 @@ describe("Can set sail!", () => {
 
         ship.setSail(); 
         expect(ship.currentPort).toBeFalsy();
-        expect(Bristol.ships).not.toContain(ship);
-        expect(ship.previousPort.ships).not.toContain(ship);
+        expect(Bristol.removeShip).toHaveBeenCalledWith(ship);
         expect(ship.previousPort).toBe(Bristol);
 
     })
     it("setting sail should remove ship from previous port", () => {
-
-        expect(ship.currentPort.ships).toContain(ship);
+        ship.dock(Bristol);
+        expect(Bristol.addShip).toHaveBeenCalledWith(ship);
         ship.setSail(); 
-        expect(ship.previousPort.ships).not.toContain(ship);
+        expect(Bristol.removeShip).toHaveBeenCalledWith(ship);
        
         
     })
@@ -89,23 +111,36 @@ describe("Can set sail!", () => {
 
 describe("Docking at a port", () => {
 
-    let bristol;
+    let Bristol;
     let Lindsfeild;
     let ship;
     let itinerary;
 
     beforeEach(() => {
-      bristol= new Port("Bristol");  
-      Lindsfeild = new Port("Lindsfeild"); 
-      itinerary = new Itinerary([bristol, Lindsfeild]) 
+
+      Bristol =  {
+        addShip : jest.fn(),
+        removeShip : jest.fn(),
+        name : 'Bristol',
+        ships : [],
+    };
+    Lindsfeild =  {
+        addShip : jest.fn(),
+        removeShip : jest.fn(),
+        name : 'Lindsfield',
+        ships : [],
+    };
+    itinerary = { 
+        ports : [Bristol, Lindsfeild]
+    }
       ship = new Ship(itinerary);
     });
 
     it("can dock at a different port", () => {
         ship.setSail();
         ship.dock();
-        expect(ship.currentPort).toBe(Lindsfeild);
-        expect(ship.currentPort.ships).toContain(ship);
+        expect(Bristol.removeShip).toHaveBeenCalledWith(ship);
+        expect(Lindsfeild.addShip).toHaveBeenCalledWith(ship);
 
     })
 
