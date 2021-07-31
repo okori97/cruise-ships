@@ -1,6 +1,4 @@
 const { TestWatcher } = require("jest");
-const Ship = require("../src/cruise");
-const Port = require("../src/port");
 const Itinerary = require("../src/itinerary");
 
 

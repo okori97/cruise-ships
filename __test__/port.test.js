@@ -1,4 +1,4 @@
-const Ship = require("../src/cruise");
+
 const Port = require("../src/port");
 const Itinerary = require("../src/itinerary");
 
@@ -25,7 +25,7 @@ describe("Ports", () => {
     });
    
     it("should be able to add ships", () => {
-        
+
         port.removeShip()
         port.addShip(titanic);
         expect(port.ships).toContain(titanic);
