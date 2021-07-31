@@ -7,28 +7,31 @@ describe("Ports", () => {
     let port;
     let ship;
     let itinerary;
-    let Titanic;
+    let titanic;
+    let queenMary
+
+
     beforeEach(() => {
         port = new Port("Bristol"); 
         itinerary = new Itinerary([port]); 
-        ship = new Ship(itinerary);
-        Titanic = new Ship(itinerary);
+        ship = jest.fn();
+        titanic = jest.fn();
+        queenMary = jest.fn();
     });
 
     it("new Port() should return an object", () => {
+
         expect(port).toBeInstanceOf(Object);
     });
    
     it("should be able to add ships", () => {
+        
         port.removeShip()
-        port.addShip(ship);
-        expect(port.ships).toContain(ship);
+        port.addShip(titanic);
+        expect(port.ships).toContain(titanic);
     });
     it("should be able to remove ships", () => {
-    const port = new Port('Dover');
-    const titanic = jest.fn();
-    const queenMary = jest.fn();
-
+    
     port.addShip(titanic);
     port.addShip(queenMary);
     port.removeShip(queenMary);

@@ -14,14 +14,15 @@ describe("Building a ship", () => {
     let itinerary;
 
     beforeEach(() => {
+
         port = new Port('Bristol');
         itinerary = new Itinerary([port]);
         ship = new Ship(itinerary);
+
         });
 
 
     it("should return a object", () => {
-    
         expect(ship).toBeInstanceOf(Object);
     })
 
@@ -38,30 +39,39 @@ describe("Building a ship", () => {
 
 
 describe("Can set sail!", () => {
+    
     let ship;
-    let port;
+    let Bristol;
     let itinerary;
     let London
+    let otherShip;
+
     beforeEach(() => {
-        port = new Port("Bristol");
+
+        Bristol = new Port("Bristol");
         London = new Port("London");
-        itinerary = new Itinerary([port, London]);
+        itinerary = new Itinerary([Bristol, London]);
         ship = new Ship(itinerary);
+        otherShip = new Ship(itinerary);
+
         });
 
     it("should have a method called set sail", () => {
+
         expect(ship.setSail).toBeInstanceOf(Function);
     })
 
     it("setting sail should change starting port to false", () => {
+
         ship.setSail(); 
         expect(ship.currentPort).toBeFalsy();
-        expect(port.ships).not.toContain(ship);
+        expect(Bristol.ships).not.toContain(ship);
         expect(ship.previousPort.ships).not.toContain(ship);
-        expect(ship.previousPort).toBe(port);
+        expect(ship.previousPort).toBe(Bristol);
 
     })
     it("setting sail should remove ship from previous port", () => {
+
         expect(ship.currentPort.ships).toContain(ship);
         ship.setSail(); 
         expect(ship.previousPort.ships).not.toContain(ship);
@@ -69,27 +79,25 @@ describe("Can set sail!", () => {
         
     })
 
-    it("can\'t sail further than it\'s itinerary", () => {
-        const Bristol = new Port('Bristol');
-        const London = new Port('London');
-        const itin = new Itinerary([Bristol, London]);
-        const ship2 = new Ship(itin);
+    it("can\'t sail further than it\'s itinerary", () => { 
 
-        ship2.setSail();
-        ship2.dock();
-
-        expect(() => ship2.setSail()).toThrowError('End of itinerary reached');
+        otherShip.setSail();
+        otherShip.dock();
+        expect(() => otherShip.setSail()).toThrowError('End of itinerary reached');
     })
 });
 
 describe("Docking at a port", () => {
+
     let bristol;
     let Lindsfeild;
     let ship;
+    let itinerary;
+
     beforeEach(() => {
       bristol= new Port("Bristol");  
       Lindsfeild = new Port("Lindsfeild"); 
-      const itinerary = new Itinerary([bristol, Lindsfeild]) 
+      itinerary = new Itinerary([bristol, Lindsfeild]) 
       ship = new Ship(itinerary);
     });
 
