@@ -84,7 +84,7 @@ describe("Can set sail!", () => {
         expect(ship.setSail).toBeInstanceOf(Function);
     })
 
-    it("setting sail should change starting port to false", () => {
+    it("should change starting port to false, when setting sail", () => {
 
         ship.setSail(); 
         expect(ship.currentPort).toBeFalsy();
@@ -92,7 +92,7 @@ describe("Can set sail!", () => {
         expect(ship.previousPort).toBe(Bristol);
 
     })
-    it("setting sail should remove ship from previous port", () => {
+    it("should remove ship from previous port, when setting sail", () => {
         ship.dock(Bristol);
         expect(Bristol.addShip).toHaveBeenCalledWith(ship);
         ship.setSail(); 
@@ -101,7 +101,7 @@ describe("Can set sail!", () => {
         
     })
 
-    it("can\'t sail further than it\'s itinerary", () => { 
+    it("should not be able to set sail further than it\'s itinerary", () => { 
 
         otherShip.setSail();
         otherShip.dock();
@@ -136,7 +136,7 @@ describe("Docking at a port", () => {
       ship = new Ship(itinerary);
     });
 
-    it("can dock at a different port", () => {
+    it("should be able to dock at a different port", () => {
         ship.setSail();
         ship.dock();
         expect(Bristol.removeShip).toHaveBeenCalledWith(ship);

@@ -8,9 +8,6 @@ function Ship(itinerary) {
 };
 
 
-Ship.prototype.boardPassengers = function(amount_Of_People) {
-return this.passengers += amount_Of_People;
-}
 
 Ship.prototype.setSail = function() {
     const currentPortIndex = this.itinerary.ports.indexOf(this.currentPort);
