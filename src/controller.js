@@ -24,6 +24,6 @@
         module.exports = Controller;
     } else {
         window.Controller = Controller;
-    }
+}
     
 }());
