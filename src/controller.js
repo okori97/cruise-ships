@@ -3,7 +3,8 @@
         this.ship = ship;
         this.initialiseSea();
 
-       
+        document.querySelector('#sailbutton').addEventListener('click', () => { this.setSail();
+        });
     }
 
     Controller.prototype = { 
@@ -24,6 +25,7 @@
             }, 1000);  
 
         },
+
 
         renderPorts(ports) {
            var portsElement = document.querySelector('#ports');
@@ -50,11 +52,37 @@
             const portElement = document.querySelector(`[data-port-index='${shipPortIndex}']`);
 
             const shipElement = document.querySelector('#ship');
-            shipElement.style.top = `${portElement.offsetTop +32}px`;
+            shipElement.style.top = `${portElement.offsetTop + 32}px`;
             shipElement.style.left = `${portElement.offsetLeft - 32}px`;
       
 
         },
+
+        setSail() {
+
+            const ship = this.ship;
+            const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+            const nextPortIndex = currentPortIndex + 1;
+            const nextportElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
+            if (!nextportElement) {
+                return alert("End of the line!");
+            }
+
+            const shipElement = document.querySelector('#ship');
+            const sailInterval = setInterval(() => {
+
+                const shipLeft = parseInt(shipElement.style.left, 10);
+                if (shipLeft === (nextportElement.offsetLeft - 32)) {
+                    ship.setSail();
+                    ship.dock();
+                    clearInterval(sailInterval)
+                }
+                shipElement.style.left = `${shipLeft + 1}px`;
+            }, 20);
+            
+
+
+        }
     }
 
     if (typeof module !== 'undefined' && module.exports) {
