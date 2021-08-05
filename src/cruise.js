@@ -1,7 +1,5 @@
 
 (function exportShip() {
-
-
     function Ship(itinerary) {
         this.currentPort = itinerary.ports[0];
         this.itinerary = itinerary;
@@ -32,13 +30,15 @@
 
     };
 
-    if(module != 'undefined' && module.exports) {
+    if(typeof module !== 'undefined' && module.exports) {
         module.exports = Ship;
     } else {
         window.Ship = Ship;
     }
+
     
-}())
+    
+}());
 
 
 
