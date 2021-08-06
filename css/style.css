@@ -98,3 +98,46 @@ html {
     display: flex;
     flex-direction: column;
 }
+
+#formWrapper {
+    width: 1088px;
+    height: 248px;
+    display: flex;
+    position: absolute;
+    z-index: 6;
+    justify-content: start;
+   
+    transform: translateY(-228px);
+
+    
+}
+
+#portForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: black solid 3px;
+    position: relative;
+    background-color:white;
+    z-index: 5;
+    height: fit-content;
+    font-family: 'Press Start 2p', cursive;
+    color: black;
+    padding: 20px 20px;
+    font-size: 16px;
+    left: -8px;
+    top: -8px;
+    
+}
+
+#portname {
+    width: 200px;
+    padding: 2px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#submit {
+    background-color: #d8040f;
+    color: white;
+}
