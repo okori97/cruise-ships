@@ -5,6 +5,13 @@
 
         document.querySelector('#sailbutton').addEventListener('click', () => { this.setSail();
         });
+
+        var form = document.querySelector('#portForm');
+        if(form.attachEvent) {
+            form.attachEvent("submit", this.addPort);
+        } else {
+            form.addEventListener("submit", this.addPort);
+        }
     }
 
     Controller.prototype = { 
@@ -139,6 +146,12 @@
             }
 
         },
+
+        addPort(e) {
+            if (e.preventDefault) e.preventDefault();
+
+            return false;
+        }
 
     
     }
