@@ -61,6 +61,7 @@
         setSail() {
 
             const ship = this.ship;
+            const departingPort = ship.currentPort.name;
             const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
             const nextPortIndex = currentPortIndex + 1;
             const nextportElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
@@ -80,12 +81,13 @@
                 shipElement.style.left = `${shipLeft + 1}px`;
             }, 20);
             
-            this.renderMessage();
+
+            this.renderMessage(`Now departing ${departingPort}`);
 
         },
 
         renderMessage(message) {
-            message = "choo choo!";
+           
 
             let viewport = document.querySelector('#viewport');
             const messageElement = document.createElement("div");
