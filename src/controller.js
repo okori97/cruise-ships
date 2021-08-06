@@ -80,7 +80,24 @@
                 shipElement.style.left = `${shipLeft + 1}px`;
             }, 20);
             
+            this.renderMessage();
 
+        },
+
+        renderMessage(message) {
+            message = "choo choo!";
+
+            let viewport = document.querySelector('#viewport');
+            const messageElement = document.createElement("div");
+            messageElement.id = 'message';
+            messageElement.innerHTML = `${message}`;
+
+            viewport.appendChild(messageElement);
+
+            const messageInterval = setTimeout(()=> {
+                viewport.removeChild(messageElement);
+                clearTimeout(messageInterval);
+            }, 2*1000);
 
         }
     }
