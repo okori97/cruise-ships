@@ -64,12 +64,11 @@ html {
 #message {
     width: 100%;
     background-color: white;
-    border-bottom: 4px solid black;
+    border-top: 3px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
-    border: 0;
     font-family: inherit;
     position: absolute;
     z-index: 2;
@@ -78,5 +77,5 @@ html {
     padding: 10px, 20px;
     font-family: 'Press Start 2p', cursive;
     color: black;
-    font-size: 18px;
+    font-size: 16px;
 }

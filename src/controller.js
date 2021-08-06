@@ -66,14 +66,15 @@
             const nextPortIndex = currentPortIndex + 1;
             const nextportElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
             if (!nextportElement) {
-                return alert("End of the line!");
+                return this.renderMessage("End of the line!");
             }
 
             const shipElement = document.querySelector('#ship');
             const sailInterval = setInterval(() => {
-
+        
                 const shipLeft = parseInt(shipElement.style.left, 10);
-                if (shipLeft === (nextportElement.offsetLeft - 32)) {
+                
+                if (shipLeft === (nextportElement.offsetLeft - 32) && nextportElement) {
                     ship.setSail();
                     ship.dock();
                     clearInterval(sailInterval)
