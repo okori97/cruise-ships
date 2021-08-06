@@ -77,13 +77,21 @@
                 if (shipLeft === (nextportElement.offsetLeft - 32) && nextportElement) {
                     ship.setSail();
                     ship.dock();
-                    clearInterval(sailInterval)
+                    const arrivingPort = ship.currentPort.name;
+                    this.renderMessage(`You have now arrived at ${arrivingPort}`);
+                    clearInterval(sailInterval);
                 }
                 shipElement.style.left = `${shipLeft + 1}px`;
-            }, 20);
-            
 
-            this.renderMessage(`Now departing ${departingPort}`);
+            }, 20);
+
+    
+
+            this.renderMessage(`Now departing from ${departingPort}`);
+
+            
+            
+            
 
         },
 
