@@ -54,7 +54,7 @@
             const shipElement = document.querySelector('#ship');
             shipElement.style.top = `${portElement.offsetTop + 32}px`;
             shipElement.style.left = `${portElement.offsetLeft - 32}px`;
-            this.renderHUD();
+            
 
         },
 
@@ -78,6 +78,7 @@
                     ship.setSail();
                     ship.dock();
                     const arrivingPort = ship.currentPort.name;
+                    this.renderHUD(arrivingPort);
                     this.renderMessage(`You have now arrived at ${arrivingPort}`);
                     clearInterval(sailInterval);
                 }
@@ -113,14 +114,25 @@
 
         },
 
-        renderHUD() {
+        renderHUD(name) {
             
+            
+            const ship = this.ship;
+            const currentPortHUD = name || ship.currentPort.name;
+
             let HUD = document.querySelector("#HUD");
             const currentPortInfo = document.createElement("div");
-            currentPortInfo.innerHTML = "Test HUD";
+            currentPortInfo.innerHTML = `Current Port : ${currentPortHUD}`;
 
             HUD.appendChild(currentPortInfo);
-        }
+            if (HUD.children.length = 1) {
+                const first = HUD.firstChild;
+                HUD.removeChild(first);
+            }
+
+        },
+
+    
     }
 
     if (typeof module !== 'undefined' && module.exports) {
