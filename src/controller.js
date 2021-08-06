@@ -118,16 +118,24 @@
             
             
             const ship = this.ship;
-            const currentPortHUD = name || ship.currentPort.name;
+            const currentPortHUD = name || ship.currentPort.name;  
+
+            const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+            const nextPortIndex = currentPortIndex + 1;
+            const nextPortHUD = ship.itinerary.ports[nextPortIndex].name;
 
             let HUD = document.querySelector("#HUD");
             const currentPortInfo = document.createElement("div");
+            const nextPortInfo = document.createElement("div");
             currentPortInfo.innerHTML = `Current Port : ${currentPortHUD}`;
+            nextPortInfo.innerHTML = `Next Port : ${nextPortHUD}`;
 
             HUD.appendChild(currentPortInfo);
-            if (HUD.children.length = 1) {
-                const first = HUD.firstChild;
-                HUD.removeChild(first);
+            HUD.appendChild(nextPortInfo);
+            if (HUD.children.length > 2) {
+                while (HUD.children.length > 2) {
+                HUD.removeChild(HUD.firstChild);
+                }
             }
 
         },
