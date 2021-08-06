@@ -54,7 +54,7 @@
             const shipElement = document.querySelector('#ship');
             shipElement.style.top = `${portElement.offsetTop + 32}px`;
             shipElement.style.left = `${portElement.offsetLeft - 32}px`;
-      
+            this.renderHUD();
 
         },
 
@@ -88,6 +88,7 @@
     
 
             this.renderMessage(`Now departing from ${departingPort}`);
+           
 
             
             
@@ -110,6 +111,15 @@
                 clearTimeout(messageInterval);
             }, 2*1000);
 
+        },
+
+        renderHUD() {
+            
+            let HUD = document.querySelector("#HUD");
+            const currentPortInfo = document.createElement("div");
+            currentPortInfo.innerHTML = "Test HUD";
+
+            HUD.appendChild(currentPortInfo);
         }
     }
 

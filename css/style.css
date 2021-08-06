@@ -1,5 +1,6 @@
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -79,4 +80,21 @@ html {
     font-family: 'Press Start 2p', cursive;
     color: black;
     font-size: 16px;
+}
+
+#HUD {
+    width: 1040px;
+    background-color: black;
+    border: white solid 4px;
+    height: 200px;
+    position:relative;
+    z-index: 4;
+    font-family: 'Press Start 2p', cursive;
+    color: white;
+    padding: 20px 20px;
+    font-size: 16px;
+    transform: translateY(-100px);
+    text-align: end;
+    display: flex;
+    flex-direction: column;
 }
