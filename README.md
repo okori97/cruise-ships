@@ -1,4 +1,4 @@
-#Cruise Ship
+# Cruise Ship
 
 This is a JS application given to me as an assignment from MCR Codes. This app aims to allow users to sail a cruise ship between an array of ports.
 
