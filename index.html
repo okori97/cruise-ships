@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cruise Ships</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-    </head>
-    <body>
-        <div id="formWrapper">
-            <form action="post" id="portForm">
-                <label for="portname">Add Port</label>
-                <input type="text" id="portname" placeholder="Port name">
-                <input type="submit" value="Add" id="submit" >
-            </form> 
-        </div>
-        
-
-        <div id="HUD">   
-        </div>
-    <div id="viewport">
-        <div id="ports">
-        </div>
-        <div id="ship"></div>
-        <button id="sailbutton"> Set Sail!</button>
-
+  <body>
+    <div id="formWrapper">
+      <form id="portForm">
+        <label for="portname">Add Port</label>
+        <input
+          type="text"
+          name="nameOFPort"
+          id="portname"
+          placeholder="Port name"
+        />
+        <input type="submit" value="Add" id="submit" />
+      </form>
     </div>
-   
-    <script src="/src/controller.js"> </script>
-    <script src="/src/port.js"> </script>
-    <script src="/src/itinerary.js"> </script>
-    <script src="/src/cruise.js"> </script>
+
+    <div id="HUD"></div>
+    <div id="viewport">
+      <div id="ports"></div>
+      <div id="ship"></div>
+      <button id="sailbutton">Set Sail!</button>
+    </div>
+
+    <script src="/src/controller.js"></script>
+    <script src="/src/port.js"></script>
+    <script src="/src/itinerary.js"></script>
+    <script src="/src/cruise.js"></script>
+
     <script>
-     
-        const port = new Port();
-        const itinerary = new Itinerary([
-            new Port('Bristol'),
-            new Port('Bath'),
-            new Port('London'),
-            new Port('Cambridge'),
-        ]);
-        const ship = new Ship(itinerary);
-        const controller = new Controller(ship);
+      const port = new Port();
+      const itinerary = new Itinerary([
+        new Port("Bristol"),
+        new Port("Bath"),
+        //new Port('London'),
+        // new Port('Cambridge'),
+      ]);
+      const ship = new Ship(itinerary);
+      const controller = new Controller(ship);
 
-        controller.renderPorts(itinerary.ports);
-        controller.renderShip();
-        controller.renderHUD();
-
-     
-
+      controller.renderPorts(itinerary.ports);
+      controller.renderShip();
+      controller.renderHUD();
     </script>
-</body>
+  </body>
 </html>

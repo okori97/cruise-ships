@@ -1,6 +1,7 @@
 
 (function exportShip() {
     function Ship(itinerary) {
+        
         this.currentPort = itinerary.ports[0];
         this.itinerary = itinerary;
         this.previousPort = [];
