@@ -21,6 +21,7 @@ To run this project, you will need to download it onto your local machine and in
 Navigate inside the directory and install all dependencies by entering the following command on your terminal window:
 
 `npm install`
+
 **Author**
 
 Okori
