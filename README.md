@@ -12,16 +12,15 @@ This is a JS application given to me as an assignment from MCR Codes. This app a
 
 **Packages Used:**
 
-NPM
+npm
 
 **Running the app**
 
-T run this project, you will need to download it onto your local machine and install all dependencies.
+To run this project, you will need to download it onto your local machine and install all dependencies.
 
 Navigate inside the directory and install all dependencies by entering the following command on your terminal window:
 
-npm install
-
+`npm install`
 **Author**
 
 Okori
