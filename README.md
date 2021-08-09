@@ -58,5 +58,4 @@ If given more time, i would add or complete the following things:
 ```
 - Add ports feature
 - Allow users to get of at dock and explore simple tile map
-
 ```
