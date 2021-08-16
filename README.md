@@ -3,6 +3,8 @@
 
 This is a JS application given to me as an assignment from MCR Codes. This app aims to allow users to sail a cruise ship between an array of ports.
 
+![Image](https://imgur.com/RlFb9fx)
+
 ## Built Using
 
 - Node.js
